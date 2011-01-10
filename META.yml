@@ -15,10 +15,11 @@ meta-spec:
 name: Text-Tweet
 requires:
   Moo: 0.009002
+  Text::Trim: 1.02
 resources:
   homepage: http://github.com/Getty/p5-text-tweet/tree
   repository: git://github.com/Getty/p5-text-tweet.git
-version: 0.001
+version: 0.002
 x_Dist_Zilla:
   plugins:
     -

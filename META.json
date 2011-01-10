@@ -21,7 +21,8 @@
       },
       "runtime" : {
          "requires" : {
-            "Moo" : "0.009002"
+            "Moo" : "0.009002",
+            "Text::Trim" : "1.02"
          }
       },
       "test" : {
@@ -39,7 +40,7 @@
          "web" : "http://github.com/Getty/p5-text-tweet/tree"
       }
    },
-   "version" : "0.001",
+   "version" : "0.002",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
