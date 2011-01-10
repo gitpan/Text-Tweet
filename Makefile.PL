@@ -25,7 +25,7 @@ my %WriteMakefileArgs = (
     'Moo' => '0.009002',
     'Text::Trim' => '1.02'
   },
-  'VERSION' => '0.002',
+  'VERSION' => '0.003',
   'test' => {
     'TESTS' => 't/*.t'
   }

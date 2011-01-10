@@ -3,7 +3,7 @@ BEGIN {
   $Text::Tweet::AUTHORITY = 'cpan:GETTY';
 }
 BEGIN {
-  $Text::Tweet::VERSION = '0.002';
+  $Text::Tweet::VERSION = '0.003';
 }
 # ABSTRACT: Optimize a tweet based on given keywords
 
@@ -16,13 +16,13 @@ has maxlen => (
 	default => sub { 140 },
 );
 
-has hash => (
+has marker => (
 	is => 'ro',
 	default => sub { '#' },
 );
 
 # TODO
-has hash_re => (
+has marker_re => (
 	is => 'ro',
 	default => sub { '\#' },
 );
@@ -91,19 +91,19 @@ sub _generate_tweet {
 	
 	my @newparts;
 	my @used_keywords;
-	my $hash = $self->hash;
-	my $hash_re = $self->hash_re;
+	my $marker = $self->marker;
+	my $marker_re = $self->marker_re;
 	for my $keyword (@keywords) {
 
 		if (!grep { lc($_) eq lc($keyword) } @used_keywords) {
 			push @used_keywords, $keyword;
 
 			my $count = parts_length(@parts,@newparts);			
-			last if $count + 1 + length($hash) > $self->maxlen;
+			last if $count + 1 + length($marker) > $self->maxlen;
 
 			my $hkeyword = lc($keyword);
 			$hkeyword =~ s/[^\w]//ig;
-			$hkeyword = $hash.$hkeyword;
+			$hkeyword = $marker.$hkeyword;
 
 			my $found_in_parts = 0;
 			
@@ -111,7 +111,7 @@ sub _generate_tweet {
 				for (@parts) {
 					next if ref $_ eq 'SCALAR';
 					my $original_part = $_;
-					$_ =~ s/($keyword)/$hash$1/i;
+					$_ =~ s/($keyword)/$marker$1/i;
 					if ($_ ne $original_part) {
 						$found_in_parts = 1;
 						last;
@@ -147,7 +147,7 @@ Text::Tweet - Optimize a tweet based on given keywords
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
@@ -155,7 +155,7 @@ version 0.002
   
   my $tweeter = new Text::Tweet({
     maxlen => 140,
-    hash => '#',
+    marker => '#',
     hashtags_at_end => 0,
     keywords => [ 'Perl', 'Twitter', 'Facebook', 'Private' ],
   });
