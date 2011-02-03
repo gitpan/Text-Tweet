@@ -22,10 +22,10 @@ my %WriteMakefileArgs = (
   'LICENSE' => 'perl',
   'NAME' => 'Text::Tweet',
   'PREREQ_PM' => {
-    'Moo' => '0.009002',
+    'Moo' => '0.009005',
     'Text::Trim' => '1.02'
   },
-  'VERSION' => '0.003',
+  'VERSION' => '0.004',
   'test' => {
     'TESTS' => 't/*.t'
   }

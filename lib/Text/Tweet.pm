@@ -3,7 +3,7 @@ BEGIN {
   $Text::Tweet::AUTHORITY = 'cpan:GETTY';
 }
 BEGIN {
-  $Text::Tweet::VERSION = '0.003';
+  $Text::Tweet::VERSION = '0.004';
 }
 # ABSTRACT: Optimize a tweet based on given keywords
 
@@ -102,7 +102,7 @@ sub _generate_tweet {
 			last if $count + 1 + length($marker) > $self->maxlen;
 
 			my $hkeyword = lc($keyword);
-			$hkeyword =~ s/[^\w]//ig;
+			$hkeyword =~ s/[^\w]|_//ig;
 			$hkeyword = $marker.$hkeyword;
 
 			my $found_in_parts = 0;
@@ -147,7 +147,7 @@ Text::Tweet - Optimize a tweet based on given keywords
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
